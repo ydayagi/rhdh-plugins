@@ -575,6 +575,10 @@ components:
           additionalProperties: true
         orchestratorAssessmentInstanceId:
           type: string
+        orchestratorUseAssessmentInput:
+          type: boolean
+          description: If orchestratorAssessmentInstanceId is set and this is true then take the input of the assessment as input for this execution
+          default: true
     ExecuteWorkflowResponseDTO:
       type: object
       properties:

@@ -880,6 +880,11 @@ ul.nav-tabs {
     },
     "orchestratorAssessmentInstanceId" : {
       "type" : "string"
+    },
+    "orchestratorUseAssessmentInput" : {
+      "type" : "boolean",
+      "description" : "If orchestratorAssessmentInstanceId is set and this is true then take the input of the assessment as input for this execution",
+      "default" : true
     }
   }
 };
@@ -1855,6 +1860,7 @@ The identifier of the workflow instance to abort.
  "http://localhost/v2/workflows/{workflowId}/execute" \
  -d '{
   &quot;inputData&quot; : &quot;{}&quot;,
+  &quot;orchestratorUseAssessmentInput&quot; : true,
   &quot;orchestratorAssessmentInstanceId&quot; : &quot;orchestratorAssessmentInstanceId&quot;
 }'
 </code></pre>

@@ -79,6 +79,12 @@ export interface ExecuteWorkflowRequestDTO {
      * @memberof ExecuteWorkflowRequestDTO
      */
     'orchestratorAssessmentInstanceId'?: string;
+    /**
+     * If orchestratorAssessmentInstanceId is set and this is true then take the input of the assessment as input for this execution
+     * @type {boolean}
+     * @memberof ExecuteWorkflowRequestDTO
+     */
+    'orchestratorUseAssessmentInput'?: boolean;
 }
 /**
  * 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 The Backstage Authors
+ * Copyright Red Hat, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import {
   Filter,
   ProcessInstance,
@@ -172,6 +173,7 @@ export class OrchestratorService {
 
   public async executeWorkflow(args: {
     definitionId: string;
+    definitionVersion?: string;
     serviceUrl: string;
     inputData?: ProcessInstanceVariables;
     cacheHandler?: CacheHandler;
@@ -181,9 +183,24 @@ export class OrchestratorService {
       definitionId,
       cacheHandler,
     );
-    return isWorkflowAvailable
-      ? await this.sonataFlowService.executeWorkflow(args)
-      : undefined;
+
+    if (!isWorkflowAvailable) {
+      return undefined;
+    }
+
+    if (
+      args.definitionVersion &&
+      args.inputData?.orchestratorAssessmentInstanceId &&
+      args.inputData?.orchestratorUseAssessmentInput
+    ) {
+      return await this.dataIndexService.executeWorkflow(
+        args.definitionId,
+        args.definitionVersion,
+        args.inputData?.orchestratorAssessmentInstanceId as string,
+        args.inputData,
+      );
+    }
+    return await this.sonataFlowService.executeWorkflow(args);
   }
 
   public async retriggerWorkflow(args: {
