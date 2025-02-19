@@ -33,7 +33,7 @@ These plugins farther import following isolated plugins:
 
 4. **`backstage-plugin-orchestrator-form-api`**
    - Defines the API for extending the workflow execution form.
-   - For more details, see the [Extensible Form Documentation](./docs/extensibleForm.md).
+   - For more details, see the Extensible Form Documentation.
 
 For more details about architecture, see the [Architecture](https://www.rhdhorchestrator.io/main/docs/architecture/) page.
 
